@@ -1,0 +1,274 @@
+@media (max-width: 1000px) {
+    body.level-page .container {
+        width: 100vw;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+    }
+
+    body.level-page .container__item {
+        width: 93vw;
+        flex-basis: 93vw;
+        scroll-snap-align: start;
+        overflow: hidden;
+        flex-shrink: 0;
+        max-width: none;
+    }
+}
+@media (max-width: 600px) {
+    ::-webkit-scrollbar {
+        width: 0 !important; /* for vertical scrollbars */
+        height: 0 !important; /* for horizontal scrollbars */
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: transparent;
+        border-radius: 0;
+    }
+
+    body:not(.level-page) .page-content {
+        padding: 2rem;
+    }
+
+    .header,
+    body {
+        min-width: 0 !important;
+    }
+
+    .level-page .logo a {
+        width: 45px;
+    }
+
+    body:not(.level-page) .container {
+        display: block !important;
+    }
+
+    body:not(.level-page) .header__extra-info .filter {
+        display: none;
+    }
+
+    body:not(.level-page) .d-if {
+        display: block !important;
+    }
+
+    body:not(.level-page) .homepage-banner {
+        padding: 1rem;
+    }
+    body:not(.level-page) .homepage-banner__description {
+        max-width: 100% !important;
+        padding: 0 1rem;
+    }
+
+    body:not(.level-page) .battle-rewards {
+        display: block !important;
+    }
+    body:not(.level-page) .reward-tile {
+        margin: 0.5rem !important;
+    }
+
+    body:not(.level-page) .container__item {
+        min-height: 0 !important;
+    }
+
+    body:not(.level-page) .header__right > * {
+        margin-left: 0.75rem !important;
+    }
+
+    body:not(.level-page) .header__right .dropdown-btn > svg,
+    body:not(.level-page) .user-info__avatar {
+        margin-right: 0 !important;
+    }
+
+    body:not(.level-page) .header__right .dropdown-btn {
+        font-size: 0;
+        padding-right: 1.5rem;
+        background-position: center right 0.4rem;
+    }
+
+    .v2-footer {
+        padding: 1rem;
+    }
+    .footer__links > div {
+        flex-wrap: wrap;
+        text-align: center;
+        gap: 0.8rem !important;
+    }
+
+    body:not(.level-page) .dropdown-menu {
+        /* min-width: 100% !important; */
+        /* width: 100% !important; */
+        /* inset: 1rem !important; */
+        /* bottom: auto !important; */
+        /* position: fixed !important; */
+    }
+
+    body:not(.level-page) .dropdown-container {
+        position: static !important;
+    }
+
+    body:not(.level-page) .container__item--choose-leaderboard {
+        position: static !important;
+    }
+
+    body:not(.level-page) .leaderboard-leaders {
+        display: block !important;
+    }
+
+    .home-daily-target-panel {
+        min-height: 360px;
+    }
+
+    body:not(.level-page) .leaderboard-table tr {
+        /* display: flex; */
+        /* flex-direction: column; */
+    }
+    body:not(.level-page) .leaderboard-table td,
+    body:not(.level-page) .leaderboard-table td[data-column='Player Details'] {
+        text-align: center !important;
+        padding: 0 !important;
+    }
+
+    body:not(.level-page) .scoring-tip {
+        padding-left: 0 !important;
+    }
+
+    body:not(.level-page) .scoring-tip:after {
+        left: unset !important;
+    }
+
+    body:not(.level-page) .scoring-tip h2 {
+        padding-left: 5rem;
+    }
+
+    body:not(.level-page) .scoring-tip__code-container {
+        display: block !important;
+    }
+
+    body:not(.level-page) .scoring-tip__code {
+        margin: 0.75rem 1.25rem !important;
+    }
+
+    body:not(.level-page) .container--fixed-height {
+        min-height: 0 !important;
+        height: auto !important;
+    }
+
+    body:not(.level-page) .battle-status {
+        margin-top: 1rem;
+    }
+
+    body:not(.level-page) .logo a {
+        width: 40px !important;
+        background: url(/images/logo-no-text.svg) no-repeat !important;
+        position: relative;
+        top: 5px;
+    }
+
+    body:not(.level-page) .leaderboard-buttons .button {
+        width: 100%;
+        margin: 0.5rem 0 !important;
+    }
+
+    body:not(.level-page) .container__item {
+        min-width: 0 !important;
+    }
+
+    .mobile-only {
+        display: unset !important;
+    }
+    .desktop-only {
+        display: none !important;
+    }
+
+    body:not(.level-page) .container__item--sticky,
+    body:not(.level-page) .container__item--user-info,
+    body:not(.level-page) .container__item--choose-leaderboard {
+        position: static;
+    }
+
+    body:not(.level-page) .settings-container,
+    body:not(.level-page) .input-with-prefix {
+        display: block !important;
+    }
+
+    body:not(.level-page) .settings-tab-content {
+        padding: 0 !important;
+        border: 0 !important;
+    }
+
+    body:not(.level-page) .input-prefix {
+        border-radius: 5px 5px 0 0 !important;
+        border-right: 1px solid var(--clr-border-brighter) !important;
+        border-bottom: 0 !important;
+    }
+
+    body:not(.level-page) .input-with-prefix input,
+    body:not(.level-page) .input-with-button button {
+        border-radius: 0 0 5px 5px !important;
+        border-left: 1px solid var(--clr-border-brighter) !important;
+    }
+
+    body:not(.level-page) .input-container select {
+        width: 100%;
+    }
+
+    body:not(.level-page) .settings-tabs {
+        background: var(--clr-target-tile-bg);
+        padding-right: 0 !important;
+        padding: 10px;
+        margin-bottom: 50px;
+    }
+
+    body:not(.level-page) .settings-tab {
+        display: inline-block;
+    }
+
+    .pro-left,
+    .pro-right {
+        width: 100% !important;
+        position: static !important;
+    }
+
+    .pro-right {
+        margin-left: 0 !important;
+    }
+
+    .header .user-info .pro-badge {
+        display: none;
+    }
+    .battles-container {
+        padding: 1rem;
+    }
+
+    .target-container {
+        transform-origin: top left;
+        scale: var(--scale-down, 0.85);
+    }
+
+    .levelpage__target {
+        max-width: 100%;
+    }
+
+    .header__live-counter {
+        display: none;
+    }
+
+    .hstack--responsive {
+        flex-wrap: wrap;
+    }
+    .target-tile--daily {
+        max-width: 75vw;
+    }
+
+    .sidebar__close {
+        right: -2px;
+        top: 32px;
+        z-index: 3;
+    }
+    .sidebar--right .sidebar__close {
+        left: -2px;
+    }
+}

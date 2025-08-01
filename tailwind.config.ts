@@ -13,6 +13,19 @@ const config: Config = {
                 // Tùy chọn nếu bạn muốn định nghĩa màu riêng
                 sidebar: '#1d232b',
             },
+            animation: {
+                rays: 'rays 60s linear infinite',
+            },
+            screens: {
+                xs: { max: '600px' },
+            },
+            keyframes: {
+                rays: {
+                    to: {
+                        transform: 'translateX(-50%) translateY(-50%) rotate(360deg)',
+                    },
+                },
+            },
         },
     },
     plugins: [],

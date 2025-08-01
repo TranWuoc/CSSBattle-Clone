@@ -1,8 +1,11 @@
 import Logo from '@/assets/battlecsslogo.png';
+import { useAuth } from '@/Context/authContext';
 
 function LeftSideBar() {
+    const { isAuthenticated } = useAuth();
+
     return (
-        <>
+        <div className="relative flex h-screen flex-col">
             {/* Header */}
             <div className="flex h-[60px] items-center gap-2 bg-[#181d23] px-[32px] py-[16px]">
                 <img src={Logo} alt="" className="h-[18px] w-[31px]" />
@@ -38,42 +41,48 @@ function LeftSideBar() {
                                     Get started
                                 </span>
                             </div>
-                            <a className="[&_svg]:text-current] flex h-[35px] cursor-pointer items-center gap-2 !pl-[32px]">
-                                <button className="text-custom-gray !mt-[10px] flex w-full cursor-pointer justify-start !p-[0]">
+                            <a className="[&_svg]:text-current] !mt-[10px] flex h-[35px] cursor-pointer items-center gap-2 !pl-[32px] [&:hover_svg]:!transform-none">
+                                <svg width="40" height="40" viewBox="0 0 20 20" style={{ transform: 'rotate(-90deg)' }}>
+                                    <circle
+                                        r="7.5"
+                                        cx="10"
+                                        cy="10"
+                                        fill="transparent"
+                                        stroke="#323f4a"
+                                        strokeWidth="2.5px"
+                                    ></circle>
+                                    <circle
+                                        r="7.5"
+                                        cx="10"
+                                        cy="10"
+                                        fill="transparent"
+                                        stroke="#a1e435"
+                                        strokeWidth="2.5px"
+                                        strokeDasharray="47.115px"
+                                        strokeDashoffset="47.115px"
+                                        strokeLinecap="round"
+                                    ></circle>
+                                </svg>
+                                <button className="text-custom-gray flex w-full cursor-pointer justify-start !p-[0]">
                                     <div className="flex items-center gap-2">
-                                        <svg
-                                            className="h-4 w-4"
-                                            viewBox="0 0 24 24"
-                                            fill="gray"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <g id="SVGRepo_iconCarrier">
-                                                <path
-                                                    d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
-                                                    strokeWidth="2"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                />
-                                            </g>
-                                        </svg>
                                         <span>0/4 done</span>
-                                        <svg
-                                            className="h-4 w-4"
-                                            viewBox="0 0 24 24"
-                                            fill="gray"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <g id="SVGRepo_iconCarrier">
-                                                <path
-                                                    d="M15.1997 10.4919L13.2297 8.52188L10.0197 5.31188C9.33969 4.64188 8.17969 5.12188 8.17969 6.08188V12.3119V17.9219C8.17969 18.8819 9.33969 19.3619 10.0197 18.6819L15.1997 13.5019C16.0297 12.6819 16.0297 11.3219 15.1997 10.4919Z"
-                                                    strokeWidth="0"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                ></path>
-                                            </g>
-                                        </svg>
                                     </div>
                                 </button>
+                                <svg
+                                    className="!mr-[20px] h-6 w-6"
+                                    viewBox="0 0 24 24"
+                                    fill="gray"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path
+                                            d="M15.1997 10.4919L13.2297 8.52188L10.0197 5.31188C9.33969 4.64188 8.17969 5.12188 8.17969 6.08188V12.3119V17.9219C8.17969 18.8819 9.33969 19.3619 10.0197 18.6819L15.1997 13.5019C16.0297 12.6819 16.0297 11.3219 15.1997 10.4919Z"
+                                            strokeWidth="0"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        ></path>
+                                    </g>
+                                </svg>
                             </a>
                         </div>
 
@@ -160,73 +169,89 @@ function LeftSideBar() {
                             </div>
                         </div>
                         {/* User Section */}
-                        <div className="!mt-[16px]">
-                            <div className="!mb-[12px] flex h-[26px] items-center bg-[var(--clr-section-heading)] !py-[4px] pl-[32px] font-['IBM_Plex_Mono'] text-[14px] font-bold uppercase leading-none opacity-[0.5]">
-                                For you
+                        {isAuthenticated && (
+                            <div className="!mt-[16px]">
+                                <div className="!mb-[12px] flex h-[26px] items-center bg-[var(--clr-section-heading)] !py-[4px] pl-[32px] font-['IBM_Plex_Mono'] text-[14px] font-bold uppercase leading-none opacity-[0.5]">
+                                    For you
+                                </div>
+                                <div className="block !pl-[32px] [unicode-bidi:isolate]">
+                                    <a className="lex flex h-[35px] cursor-pointer">
+                                        <svg
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M11.5 12.2275C9.4126 12.2275 7.70557 10.3999 7.70557 8.08057C7.69629 5.82617 9.43115 3.99854 11.5 3.99854C13.5688 3.99854 15.2944 5.80762 15.2944 8.07129C15.2944 10.3999 13.5874 12.2275 11.5 12.2275ZM5.41406 20.9297C4.28223 20.9297 3.60498 20.3823 3.60498 19.4731C3.60498 17.0981 6.68506 13.8511 11.5 13.8511C16.3057 13.8511 19.395 17.0981 19.395 19.4731C19.395 20.3823 18.7178 20.9297 17.5859 20.9297H5.41406Z"
+                                                fill="currentColor"
+                                            ></path>
+                                        </svg>
+                                        <span className="inline-block flex-[1_1_0%] p-2 leading-none">Profile</span>
+                                    </a>
+                                    <a className="lex flex h-[35px] cursor-pointer">
+                                        <svg
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M8.26367 15.7061V5.18555C8.26367 4.5791 8.65918 4.20117 9.25684 4.20117H11.0234C11.6299 4.20117 12.0166 4.5791 12.0166 5.18555V15.7061C12.0166 16.3037 11.6299 16.6904 11.0234 16.6904H9.25684C8.65918 16.6904 8.26367 16.3037 8.26367 15.7061ZM12.9834 15.7061V7.27734C12.9834 6.67969 13.3613 6.29297 13.9678 6.29297H15.7432C16.3408 6.29297 16.7363 6.67969 16.7363 7.27734V15.7061C16.7363 16.3037 16.3408 16.6904 15.7432 16.6904H13.9678C13.3613 16.6904 12.9834 16.3037 12.9834 15.7061ZM3.54395 15.7061V8.97363C3.54395 8.37598 3.93945 7.98047 4.53711 7.98047H6.30371C6.90137 7.98047 7.29688 8.37598 7.29688 8.97363V15.7061C7.29688 16.3037 6.90137 16.6904 6.30371 16.6904H4.53711C3.93945 16.6904 3.54395 16.3037 3.54395 15.7061ZM17.7031 15.7061V10.6348C17.7031 10.0371 18.0898 9.65039 18.6963 9.65039H20.4629C21.0605 9.65039 21.4561 10.0371 21.4561 10.6348V15.7061C21.4561 16.3037 21.0605 16.6904 20.4629 16.6904H18.6963C18.0898 16.6904 17.7031 16.3037 17.7031 15.7061ZM2.39258 19.1865C2.39258 18.5186 2.90234 18.0527 3.54395 18.0527H21.4561C22.1064 18.0527 22.6074 18.5186 22.6074 19.1865C22.6074 19.8457 22.1064 20.3115 21.4561 20.3115H3.54395C2.90234 20.3115 2.39258 19.8457 2.39258 19.1865Z"
+                                                fill="currentColor"
+                                            ></path>
+                                        </svg>
+                                        <span className="inline-block flex-[1_1_0%] p-2 leading-none">Stats</span>
+                                    </a>
+                                    <a className="lex flex h-[35px] cursor-pointer">
+                                        <svg
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                fill="currentColor"
+                                                d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"
+                                            ></path>
+                                        </svg>
+                                        <span className="inline-block flex-[1_1_0%] p-2 leading-none">Settings</span>
+                                    </a>
+                                </div>
                             </div>
-                            <div className="block !pl-[32px] [unicode-bidi:isolate]">
-                                <a className="lex flex h-[35px] cursor-pointer">
-                                    <svg
-                                        width="18"
-                                        height="18"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M11.5 12.2275C9.4126 12.2275 7.70557 10.3999 7.70557 8.08057C7.69629 5.82617 9.43115 3.99854 11.5 3.99854C13.5688 3.99854 15.2944 5.80762 15.2944 8.07129C15.2944 10.3999 13.5874 12.2275 11.5 12.2275ZM5.41406 20.9297C4.28223 20.9297 3.60498 20.3823 3.60498 19.4731C3.60498 17.0981 6.68506 13.8511 11.5 13.8511C16.3057 13.8511 19.395 17.0981 19.395 19.4731C19.395 20.3823 18.7178 20.9297 17.5859 20.9297H5.41406Z"
-                                            fill="currentColor"
-                                        ></path>
-                                    </svg>
-                                    <span className="inline-block flex-[1_1_0%] p-2 leading-none">Profile</span>
-                                </a>
-                                <a className="lex flex h-[35px] cursor-pointer">
-                                    <svg
-                                        width="18"
-                                        height="18"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M8.26367 15.7061V5.18555C8.26367 4.5791 8.65918 4.20117 9.25684 4.20117H11.0234C11.6299 4.20117 12.0166 4.5791 12.0166 5.18555V15.7061C12.0166 16.3037 11.6299 16.6904 11.0234 16.6904H9.25684C8.65918 16.6904 8.26367 16.3037 8.26367 15.7061ZM12.9834 15.7061V7.27734C12.9834 6.67969 13.3613 6.29297 13.9678 6.29297H15.7432C16.3408 6.29297 16.7363 6.67969 16.7363 7.27734V15.7061C16.7363 16.3037 16.3408 16.6904 15.7432 16.6904H13.9678C13.3613 16.6904 12.9834 16.3037 12.9834 15.7061ZM3.54395 15.7061V8.97363C3.54395 8.37598 3.93945 7.98047 4.53711 7.98047H6.30371C6.90137 7.98047 7.29688 8.37598 7.29688 8.97363V15.7061C7.29688 16.3037 6.90137 16.6904 6.30371 16.6904H4.53711C3.93945 16.6904 3.54395 16.3037 3.54395 15.7061ZM17.7031 15.7061V10.6348C17.7031 10.0371 18.0898 9.65039 18.6963 9.65039H20.4629C21.0605 9.65039 21.4561 10.0371 21.4561 10.6348V15.7061C21.4561 16.3037 21.0605 16.6904 20.4629 16.6904H18.6963C18.0898 16.6904 17.7031 16.3037 17.7031 15.7061ZM2.39258 19.1865C2.39258 18.5186 2.90234 18.0527 3.54395 18.0527H21.4561C22.1064 18.0527 22.6074 18.5186 22.6074 19.1865C22.6074 19.8457 22.1064 20.3115 21.4561 20.3115H3.54395C2.90234 20.3115 2.39258 19.8457 2.39258 19.1865Z"
-                                            fill="currentColor"
-                                        ></path>
-                                    </svg>
-                                    <span className="inline-block flex-[1_1_0%] p-2 leading-none">Stats</span>
-                                </a>
-                                <a className="lex flex h-[35px] cursor-pointer">
-                                    <svg
-                                        width="18"
-                                        height="18"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            fill="currentColor"
-                                            d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"
-                                        ></path>
-                                    </svg>
-                                    <span className="inline-block flex-[1_1_0%] p-2 leading-none">Settings</span>
-                                </a>
-                            </div>
-                        </div>
+                        )}
                     </div>
                 </div>
             </div>
             {/* Footer  */}
-            <div className="border-r-[1px] border-[#20262e] px-[16px] pb-[16px]">
-                <div className="flex flex-col items-stretch justify-start gap-[16px]">
-                    <button className="relative flex cursor-pointer items-center rounded-[40px] border-0 bg-[rgba(254,227,51,0.15)] px-6 py-[0.6rem] text-[#fee333] shadow-[inset_1px_1px_2px_hsla(0,0%,100%,0.1)] transition-all duration-300 ease-in-out">
-                        Your 2024 @CSSBattle
-                    </button>
-                    <button className="relative inline-flex w-full cursor-pointer items-center justify-center rounded-[40px] border-0 bg-[rgba(255,255,255,0.1)] px-4 py-[0.7rem] text-left font-bold leading-[1.2] tracking-[0.2px] text-[white] no-underline shadow-[inset_1px_1px_2px_hsla(0,0%,100%,0.1)] transition-[transform,background-color] ease-in-out">
-                        Upgrade to Plus
-                    </button>
+            <div className="border-r border-[#20262e] px-[16px] pb-[16px]">
+                <div className="flex flex-col gap-[16px]">
+                    <a
+                        href="#"
+                        className="before-clip-animate relative !m-0 flex cursor-pointer !items-center rounded-[40px] border-0 bg-[rgba(254,227,51,0.15)] !px-9 font-['ClashGrotesk'] !font-semibold leading-[20px] !text-[#fee333] shadow-[inset_1px_1px_2px_hsla(0,0%,100%,0.1)] transition-all duration-300 ease-in-out hover:scale-100 hover:!text-black"
+                        style={{ wordSpacing: '3px' }}
+                    >
+                        Your 2024 <br /> @CSSBattle
+                    </a>
+
+                    <a className="relative inline-flex w-full cursor-pointer items-center justify-center rounded-[40px] border-0 bg-[rgba(255,255,255,0.1)] px-4 py-[0.7rem] text-left !font-semibold leading-[1.2] tracking-[0.2px] !text-[white] no-underline shadow-[inset_1px_1px_2px_hsla(0,0%,100%,0.1)] transition-[transform,background-color] ease-in-out">
+                        Upgrade to
+                        <img
+                            height="18"
+                            width="37"
+                            className="!ml-[8px]"
+                            src="https://cssbattle.dev/images/pro-badge.svg"
+                            onMouseEnter={(e) => (e.currentTarget.style.filter = 'drop-shadow(0 0 14px yellow)')}
+                            onMouseLeave={(e) => (e.currentTarget.style.filter = 'none')}
+                        />
+                        <span className="button__border"></span>
+                    </a>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 export default LeftSideBar;
