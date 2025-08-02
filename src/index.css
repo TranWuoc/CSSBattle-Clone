@@ -17,7 +17,7 @@ body {
     -webkit-font-smoothing: antialiased;
     /* font-family: 'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', 'Lucida Console', monospace; */
     font-size: 16px;
-    margin: 0;
+    margin-left: 15px;
 }
 @custom-variant dark (&:is(.dark *));
 
@@ -158,6 +158,13 @@ body {
     background-image: linear-gradient(94.5deg, rgba(29, 35, 43, 0.75) 0.19%, rgba(24, 29, 35, 0.563));
 }
 
+.shadow-glow {
+    box-shadow:
+        0 0 30px rgba(255, 223, 0, 0),
+        0px 20px 50px rgba(0, 0, 0, 0.2),
+        inset 1px 1px 3px hsla(0, 0%, 100%, 0.1);
+}
+
 .text-custom-gray {
     color: #96a7bc;
 }
@@ -223,44 +230,27 @@ a.active svg {
 .before-clip-animate:hover::before {
     clip-path: xywh(0 0 100% 100% round 0 1px 2% 3px);
 }
-@keyframes border-rotation {
-    to {
-        --border-rotation: 360deg;
-    }
-}
-
-@keyframes border-x {
-    to {
-        --border-x: 0px;
-    }
-}
 
 .button__border {
-    /* yellow highlight */
     --main-color-rgb: 255, 223, 0;
+    --border-x: 24.7752px;
+    --border-rotation: 0deg;
 
-    position: absolute;
-    inset: 0;
-    border-radius: 99999px;
     pointer-events: none;
+    border: 1px solid rgba(var(--main-color-rgb), 0.2);
     -webkit-mask:
         linear-gradient(#fff 0 0) padding-box,
         linear-gradient(#fff 0 0);
     -webkit-mask-composite: destination-out;
     mask-composite: exclude;
-    border: 1px solid rgba(var(--main-color-rgb), 0.2);
 
     background: conic-gradient(
             from calc(var(--border-rotation) - 80deg) at var(--border-x) 22px,
-            rgba(var(--main-color-rgb), 0) 0%,
+            rgba(var(--main-color-rgb), 0) 0,
             rgba(var(--main-color-rgb), 0.8) 30%,
-            rgba(177, 177, 177, 0) 45%
+            hsla(0, 0%, 69%, 0) 45%
         )
         border-box;
-
-    animation:
-        -0.64s border-rotation 6s linear infinite,
-        -0.64s border-x 6s linear infinite;
 }
 
 @keyframes radar {
@@ -276,4 +266,157 @@ a.active svg {
         transform: scale(1);
         box-shadow: 0 0 0 0 rgba(255, 223, 0, 0);
     }
+}
+
+.btn-learn {
+    @apply inline-flex items-center justify-center rounded-full px-6 py-2 text-left text-[1.125rem] font-semibold text-[#fee333] shadow-[inset_1px_1px_2px_hsla(0,0%,100%,0.1)] transition-all duration-300 ease-in-out;
+    position: relative;
+    border: 0;
+    cursor: pointer;
+    text-decoration: none;
+    background: rgba(254, 227, 51, 0.15);
+    overflow: visible;
+}
+
+/* Gộp hiệu ứng clip-path + nền */
+.btn-learn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--clr-brand, #fee333);
+    clip-path: xywh(0 0 0 100% round 0 1px 2% 3px);
+    transition: clip-path 0.3s ease;
+    border-radius: 999px;
+    display: block;
+}
+
+.btn-learn:hover::before {
+    clip-path: xywh(0 0 100% 100% round 0 1px 2% 3px);
+}
+
+/* Rocket animation */
+.btn-learn::after {
+    content: '🚀';
+    position: absolute;
+    font-size: 4rem;
+    z-index: 50;
+    bottom: 51%;
+    left: 40%;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.25s ease;
+}
+
+.btn-learn:hover::after {
+    transform: translateY(0);
+    opacity: 5;
+}
+
+/* Icon bay lên */
+.btn-learn:hover .icon {
+    transform: translateY(-10px);
+    opacity: 0;
+    margin-left: -1.2ch;
+}
+
+.btn-learn .icon {
+    transition: 0.25s ease;
+    display: inline-block;
+}
+
+.btn-play {
+    @apply inline-flex items-center justify-center rounded-full px-6 py-2 text-left text-[1.125rem] font-semibold text-[#fee333] shadow-[inset_1px_1px_2px_hsla(0,0%,100%,0.1)] transition-all duration-300 ease-in-out;
+    position: relative;
+    border: 0;
+    cursor: pointer;
+    text-decoration: none;
+    background: rgba(254, 227, 51, 0.15);
+    overflow: visible;
+}
+
+/* Gộp hiệu ứng clip-path + nền */
+.btn-play::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--clr-brand, #fee333);
+    clip-path: xywh(0 0 0 100% round 0 1px 2% 3px);
+    transition: clip-path 0.3s ease;
+    border-radius: 999px;
+    display: block;
+}
+
+.btn-play:hover::before {
+    clip-path: xywh(0 0 100% 100% round 0 1px 2% 3px);
+}
+
+/* Rocket animation */
+.btn-play::after {
+    content: '🕹️';
+    position: absolute;
+    font-size: 4rem;
+    z-index: 50;
+    bottom: 51%;
+    left: 40%;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.25s ease;
+}
+
+.btn-play:hover::after {
+    transform: translateY(0);
+    opacity: 5;
+}
+
+/* Icon bay lên */
+.btn-play:hover .icon {
+    transform: translateY(-10px);
+    opacity: 0;
+    margin-left: -1.2ch;
+}
+
+.btn-play .icon {
+    transition: 0.25s ease;
+    display: inline-block;
+}
+
+.target-tile,
+.leading-targets__item {
+    text-decoration: none;
+    border-radius: 5px;
+    background: #27313a;
+    position: relative;
+    transition:
+        opacity 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease,
+        z-index 0.25s 0.25s ease;
+
+    background: linear-gradient(95.41deg, rgba(45, 55, 64, 0.5) 0%, rgba(39, 45, 52, 0.5) 101.76%);
+    box-shadow:
+        0px 8px 36px rgba(0, 0, 0, 0.1),
+        0px 24px 74px rgba(0, 0, 0, 0.15),
+        inset 1px 1px 3px rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 0.6rem;
+}
+
+.shadow-link {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.target-tile__image,
+.leading-targets__image {
+    display: block;
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+    border: 3px solid #111217;
+    border-radius: calc(16px * 0.5);
+    aspect-ratio: 4/3;
 }

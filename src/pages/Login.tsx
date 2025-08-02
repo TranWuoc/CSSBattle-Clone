@@ -48,7 +48,7 @@ function Login() {
 
     return (
         <div className="flex min-h-[calc(100vh-100px)] overflow-x-hidden p-12">
-            <div className="!mx-auto !my-[0] max-w-[1600px]">
+            <div className="!my-[0] !ml-[170px] max-w-[1600px]">
                 <div className="!font-['Clash Grotesk']">
                     <div className="flex flex-col items-center justify-start gap-[16px]">
                         <div className="relative">
@@ -106,8 +106,11 @@ function Login() {
                                 </form>
                             </FormProvider>
                         </div>
-                        <p className="flex flex-row items-center justify-center gap-1 rounded-b-2xl bg-[rgba(39,45,52,.4)] px-[32px] py-[16px] text-left text-[#6b7b8e]">
-                            By using CSSBattle, you agree to our <a> Privacy Policy and Terms of Service</a>
+                        <p className="font-['Clash Grotesk'] !mx-[64px] h-[55px] rounded-b-2xl bg-[rgba(39,45,52,.4)] px-[32px] py-[16px] text-left text-[0.875rem] text-[#6b7b8e]">
+                            By using CSSBattle, you agree to our
+                            <a className="!ml-1 !inline cursor-pointer !p-0 !text-[0.875rem] hover:!underline">
+                                Privacy Policy and Terms of Service
+                            </a>
                         </p>
                     </div>
                 </div>

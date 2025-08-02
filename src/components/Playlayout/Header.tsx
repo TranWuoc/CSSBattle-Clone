@@ -1,9 +1,17 @@
 import { useAuth } from '@/Context/authContext';
-import DropdownItem from './DropdownItem';
-import Dropdown from './Dropdown';
-import StreaksWidget from './StreaksWidget';
+import DropdownItem from '../DropdownItem';
+import Dropdown from '../Dropdown';
+import StreaksWidget from '../StreaksWidget';
 import { useNavigate } from 'react-router-dom';
-function Header() {
+import Logo from '@/assets/battlecsslogo.png';
+import { useState } from 'react';
+
+interface HeaderProps {
+    isOpenSideBar: boolean;
+    onToggleSidebar?: () => void;
+}
+
+function Header({ onToggleSidebar, isOpenSideBar }: HeaderProps) {
     const { isAuthenticated, user, logout, isLoading } = useAuth();
     const navigate = useNavigate();
     const handleLogout = () => {
@@ -45,10 +53,55 @@ function Header() {
         </div>
     );
 
+    const handleOpenLeftSideBar = () => {
+        if (onToggleSidebar) {
+            onToggleSidebar();
+        }
+    };
+
     return (
-        <div className="bg-sidebar-gradient sticky z-10 flex h-[60px] items-center justify-between px-[11.2px] py-[16px]">
+        <div className="bg-sidebar-gradient sticky z-10 flex h-[60px] items-center justify-between py-[16px]">
             {/* Left Header */}
-            <div className="w-1/2 flex-1"></div>
+            <div className="w-1/2 flex-1">
+                <div className="flex h-[60px] items-center gap-4 bg-[#181d23] py-[16px]">
+                    <button
+                        className="!font-['Clash Grotesk'] !ml-[20px] !inline-flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-[50px] border-0 bg-[#323f4a] !py-2 !text-left !font-semibold leading-[1.2] tracking-[0.2px] !text-[#fff] no-underline shadow-[inset_1px_1px_2px_hsla(0,0%,100%,0.1)] transition-[transform,background-color] duration-200 ease-in-out hover:bg-[#43515e]"
+                        onClick={handleOpenLeftSideBar}
+                    >
+                        {isOpenSideBar ? (
+                            <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="undefined"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M4.47383 4.4705C5.1056 3.83873 6.14668 3.84763 6.76955 4.4705L12.0017 9.70261L17.2338 4.4705C17.8567 3.84763 18.8977 3.83873 19.5295 4.4705C20.1613 5.10226 20.1524 6.14335 19.5295 6.76622L14.2974 11.9983L19.5295 17.2304C20.1613 17.8622 20.1613 18.8944 19.5295 19.5262C18.8977 20.1579 17.8656 20.1579 17.2338 19.5262L12.0017 14.2941L6.76955 19.5262C6.13778 20.1579 5.1056 20.1579 4.47383 19.5262C3.84206 18.8944 3.84206 17.8622 4.47383 17.2304L9.70594 11.9983L4.47383 6.76622C3.85096 6.14335 3.84206 5.10226 4.47383 4.4705Z"
+                                    fill="currentColor"
+                                ></path>
+                            </svg>
+                        ) : (
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="undefined"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M4.25537 9.03516C3.72412 9.03516 3.30078 8.57861 3.30078 8.06396C3.30078 7.54102 3.72412 7.08447 4.25537 7.08447H19.7446C20.2759 7.08447 20.6992 7.52441 20.6992 8.06396C20.6992 8.58691 20.2759 9.03516 19.7446 9.03516H4.25537ZM4.25537 12.9863C3.72412 12.9863 3.30078 12.5298 3.30078 12.0151C3.30078 11.4839 3.72412 11.0356 4.25537 11.0356H19.7446C20.2759 11.0356 20.6992 11.4756 20.6992 12.0151C20.6992 12.5381 20.2759 12.9863 19.7446 12.9863H4.25537ZM4.25537 16.9458C3.72412 16.9458 3.30078 16.481 3.30078 15.9663C3.30078 15.4434 3.72412 14.9951 4.25537 14.9951H19.7446C20.2759 14.9951 20.6992 15.4268 20.6992 15.9663C20.6992 16.4893 20.2759 16.9458 19.7446 16.9458H4.25537Z"
+                                    fill="currentColor"
+                                ></path>
+                            </svg>
+                        )}
+                    </button>
+                    <div className="flex items-center gap-1">
+                        <img src={Logo} alt="" className="h-[18px] w-[31px]" />
+                        <label className="font-ibm text-[20px] font-bold text-yellow-300">CSSBattle</label>
+                    </div>
+                </div>
+            </div>
             {/* Center Header */}
             {isAuthenticated && (
                 <div className="relative">

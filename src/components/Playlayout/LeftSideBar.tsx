@@ -1,7 +1,7 @@
 import Logo from '@/assets/battlecsslogo.png';
 import { useAuth } from '@/Context/authContext';
-import DropdownItem from './DropdownItem';
-import Dropdown from './Dropdown';
+import DropdownItem from '../DropdownItem';
+import Dropdown from '../Dropdown';
 
 function LeftSideBar() {
     const { isAuthenticated } = useAuth();
@@ -49,13 +49,7 @@ function LeftSideBar() {
 
     return (
         <div className="relative flex h-screen flex-col">
-            {/* Header */}
-            <div className="flex h-[60px] items-center gap-2 bg-[#181d23] px-[32px] py-[16px]">
-                <img src={Logo} alt="" className="h-[18px] w-[31px]" />
-                <label className="font-ibm text-[20px] font-bold text-yellow-300">CSSBattle</label>
-            </div>
-            {/* Main Content */}
-            <div className="flex-grow overflow-y-auto border-r border-[#20262e] pb-4">
+            <div className="flex border-r border-[#20262e] pb-4">
                 <div className="flex-1">
                     <div className="text-custom-gray flex flex-col">
                         {/* Home */}
@@ -312,7 +306,7 @@ function LeftSideBar() {
                 </div>
             </div>
             {/* Footer  */}
-            <div className="border-r border-[#20262e] px-[16px] pb-[16px]">
+            <div className="border-r border-[#20262e] px-[16px] pb-[16px] pt-[155px]">
                 <div className="flex flex-col gap-[16px]">
                     <a
                         href="#"

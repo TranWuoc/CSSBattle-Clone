@@ -4,7 +4,7 @@ export default function StreaksWidget() {
             <div className="group relative flex h-[165px] w-[135px] cursor-pointer items-center justify-center">
                 {/* Rays background */}
                 <div
-                    className="xs:w-[360px] pointer-events-none absolute left-1/2 top-1/2 z-[-2] aspect-square w-[525px] translate-x-[-50%] translate-y-[-50%] animate-[spin_60s_linear_infinite] bg-[url('https://cssbattle.dev/images/streak-rays.png')] bg-cover bg-center opacity-[0.075] transition-opacity duration-500 ease-in-out group-hover:opacity-[0.15]"
+                    className="xs:w-[360px] pointer-events-none absolute left-1/2 top-1/2 z-[-2] aspect-square w-[350px] translate-x-[-50%] translate-y-[-50%] animate-[spin_60s_linear_infinite] bg-[url('https://cssbattle.dev/images/streak-rays.png')] bg-cover bg-center opacity-[0.075] transition-opacity duration-500 ease-in-out group-hover:opacity-[0.15]"
                     aria-hidden
                 />
 
@@ -12,7 +12,7 @@ export default function StreaksWidget() {
                 <svg
                     viewBox="0 0 103 110"
                     xmlns="http://www.w3.org/2000/svg"
-                    className="absolute left-0 top-0 h-full w-full"
+                    className="absolute left-0 top-0 h-full w-full scale-75"
                 >
                     <defs>
                         <linearGradient id="grad" x1="0" y1="0" x2="100%" y2="100%">
@@ -22,12 +22,12 @@ export default function StreaksWidget() {
                     </defs>
                     <path
                         d="M0 0H103V90.7685C103 94.4326 100.511 97.6284 96.958 98.5252L55.416 109.011C52.8456 109.66 50.1544 109.66 47.584 109.011L6.042 98.5252C2.4893 97.6284 0 94.4326 0 90.7685V0Z"
-                        fill="url(#grad)"
+                        fill="#2d363d"
                     />
                 </svg>
 
                 {/* Content */}
-                <div className="relative z-10 !mt-[20px] flex flex-col items-center justify-center gap-[5px] pt-4">
+                <div className="relative z-10 !mt-[10px] flex scale-75 flex-col items-center justify-center gap-[5px] pt-4">
                     {/* Green check */}
                     <svg
                         width="15"
@@ -35,6 +35,7 @@ export default function StreaksWidget() {
                         viewBox="0 0 24 24"
                         fill="currentColor"
                         className="mb-[3px] text-[#a1e435] drop-shadow-[0_0_4px_#a1e43580]"
+                        style={{ filter: 'drop-shadow(0px 10px 30px rgba(0,0,0,.75))' }}
                     >
                         <path
                             fillRule="evenodd"
@@ -52,11 +53,11 @@ export default function StreaksWidget() {
                     <span className="text-base font-semibold leading-tight text-gray-400">day streak</span>
                 </div>
             </div>
-            <div className="absolute top-[50px] flex w-full justify-between px-[18%]">
-                <div className="absolute right-[calc(100%+36px)] h-[24px] w-[8px] rounded-full bg-[#39434c]" />
-                <div className="absolute right-[calc(100%+8px)] h-[48px] w-[8px] rounded-full bg-[#39434c]" />
-                <div className="absolute left-[calc(100%+8px)] h-[48px] w-[8px] rounded-full bg-[#39434c]" />
-                <div className="absolute left-[calc(100%+36px)] h-[24px] w-[8px] rounded-full bg-[#39434c]" />
+            <div className="absolute top-[50px] flex w-full scale-100 justify-between px-[18%]">
+                <div className="absolute right-[calc(100%+10px)] h-[24px] w-[8px] rounded-full bg-[#39434c]" />
+                <div className="absolute right-[calc(100%-8px)] h-[48px] w-[8px] rounded-full bg-[#39434c]" />
+                <div className="absolute left-[calc(100%-8px)] h-[48px] w-[8px] rounded-full bg-[#39434c]" />
+                <div className="absolute left-[calc(100%+10px)] h-[24px] w-[8px] rounded-full bg-[#39434c]" />
             </div>
         </div>
     );

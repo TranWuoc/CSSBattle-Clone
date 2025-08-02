@@ -9,7 +9,7 @@ interface DropdownItemProps {
 }
 
 function DropdownItem({ children, href, onClick, className = '', isDestructive = false }: DropdownItemProps) {
-    const baseClasses = 'block px-4 py-2 !h-[36px] !w-[209px] hover:!underline transition-all duration-200';
+    const baseClasses = 'block px-4 py-2 h-[36px] min-w-[209px]  transition-all duration-200';
     const destructiveClasses = isDestructive ? 'text-red-500' : '';
     const finalClasses = `${baseClasses} ${destructiveClasses} ${className}`;
 

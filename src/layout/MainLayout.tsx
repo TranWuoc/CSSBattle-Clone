@@ -1,27 +1,27 @@
 import { Outlet } from 'react-router-dom';
 import LeftSideBar from '../components/LeftSideBar';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Footer from '@/components/Footer';
 
 export default function MainLayout() {
     return (
-        <div className="flex min-h-screen">
-            {/* Sidebar */}
-            <aside className="bg-sidebar-gradient w-[204px]">
+        <div className="flex h-screen overflow-hidden">
+            {/* Sidebar - Fixed */}
+            <aside className="bg-sidebar-gradient w-[204px] flex-shrink-0">
                 <LeftSideBar />
             </aside>
 
-            {/* Header + Main + Footer */}
-            <div className="flex flex-1 flex-col">
-                {/* Header */}
-                <header className="w-full">
+            {/* Header + Main */}
+            <div className="flex flex-1 flex-col overflow-hidden">
+                {/* Header - Fixed */}
+                <header className="w-full flex-shrink-0">
                     <Header />
                 </header>
 
-                {/* Main content */}
-                <main className="w-full">
+                {/* Main content - Chỉ phần này scroll */}
+                <main className="flex-1 overflow-y-auto">
                     <Outlet />
-                    {/* <Footer /> */}
+                    <Footer />
                 </main>
             </div>
         </div>
