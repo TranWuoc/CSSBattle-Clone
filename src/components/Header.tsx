@@ -28,7 +28,7 @@ function Header() {
                 className="h-[28px] w-[28px] rounded-[50%]"
                 alt="User profile"
             ></img>
-            <p className="!font-['Clash Grotesk'] !font-bold">{user?.username || 'User'}</p>
+            <p className="!font-['Clash Grotesk'] !font-bold">{user?.name || 'User'}</p>
             <svg
                 width="18"
                 height="18"

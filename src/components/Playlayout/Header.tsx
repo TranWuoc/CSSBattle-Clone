@@ -1,10 +1,8 @@
 import { useAuth } from '@/Context/authContext';
 import DropdownItem from '../DropdownItem';
 import Dropdown from '../Dropdown';
-import StreaksWidget from '../StreaksWidget';
 import { useNavigate } from 'react-router-dom';
 import Logo from '@/assets/battlecsslogo.png';
-import { useState } from 'react';
 
 interface HeaderProps {
     isOpenSideBar: boolean;
@@ -36,7 +34,7 @@ function Header({ onToggleSidebar, isOpenSideBar }: HeaderProps) {
                 className="h-[28px] w-[28px] rounded-[50%]"
                 alt="User profile"
             ></img>
-            <p className="!font-['Clash Grotesk'] !font-bold">{user?.username || 'User'}</p>
+            <p className="!font-['Clash Grotesk'] !font-bold">{user?.name || 'User'}</p>
             <svg
                 width="18"
                 height="18"
@@ -96,28 +94,26 @@ function Header({ onToggleSidebar, isOpenSideBar }: HeaderProps) {
                             </svg>
                         )}
                     </button>
-                    <div className="flex items-center gap-1">
+                    <div
+                        className="flex items-center gap-1"
+                        onClick={() => {
+                            navigate('/');
+                        }}
+                    >
                         <img src={Logo} alt="" className="h-[18px] w-[31px]" />
                         <label className="font-ibm text-[20px] font-bold text-yellow-300">CSSBattle</label>
                     </div>
                 </div>
             </div>
-            {/* Center Header */}
-            {isAuthenticated && (
-                <div className="relative">
-                    {/* Các phần header khác */}
-                    <StreaksWidget />
-                </div>
-            )}
             {/* Right Header */}
             <div className="!leading-0 !mr-[10px] w-1/2 flex-1">
                 <div className="font-['Clash Grotesk'] ml-[16px] flex flex-row items-center justify-end gap-[4px] font-medium text-[#6b7b8e]">
                     {isAuthenticated && (
                         <button className="!mr-[16px]">
-                            <div className="!font-['Clash Grotesk'] !ml-[20px] !inline-flex h-[35px] w-[60px] cursor-pointer items-center justify-center rounded-[40px] border-0 bg-[#323f4a] !px-4 !py-[0.7rem] !text-left !font-semibold leading-[1.2] tracking-[0.2px] !text-[#fff] no-underline shadow-[inset_1px_1px_2px_hsla(0,0%,100%,0.1)] transition-[transform,background-color] duration-200 ease-in-out hover:bg-[#43515e]">
+                            <div className="!font-['Clash Grotesk'] !ml-[20px] !inline-flex h-[35px] w-[60px] cursor-pointer items-center justify-center rounded-[40px] border-0 bg-[#323f4a] !font-semibold leading-[1.2] tracking-[0.2px] !text-[#fff] no-underline shadow-[inset_1px_1px_2px_hsla(0,0%,100%,0.1)] transition-[transform,background-color] duration-200 ease-in-out hover:bg-[#43515e]">
                                 <svg
-                                    width="24"
-                                    height="24"
+                                    width="25"
+                                    height="25"
                                     viewBox="0 0 24 24"
                                     fill="undefined"
                                     xmlns="http://www.w3.org/2000/svg"
@@ -128,16 +124,14 @@ function Header({ onToggleSidebar, isOpenSideBar }: HeaderProps) {
                                     ></path>
                                 </svg>
                                 <svg
-                                    width="18"
-                                    height="18"
+                                    width="17"
+                                    height="25"
                                     viewBox="0 0 24 24"
-                                    fill="none"
+                                    fill="#949aa3"
                                     xmlns="http://www.w3.org/2000/svg"
+                                    style={{ marginLeft: ' 5px' }}
                                 >
-                                    <path
-                                        fill="currentColor"
-                                        d="M17.9188 8.17969H11.6888H6.07877C5.11877 8.17969 4.63877 9.33969 5.31877 10.0197L10.4988 15.1997C11.3288 16.0297 12.6788 16.0297 13.5088 15.1997L15.4788 13.2297L18.6888 10.0197C19.3588 9.33969 18.8788 8.17969 17.9188 8.17969Z"
-                                    ></path>
+                                    <path d="M17.9188 8.17969H11.6888H6.07877C5.11877 8.17969 4.63877 9.33969 5.31877 10.0197L10.4988 15.1997C11.3288 16.0297 12.6788 16.0297 13.5088 15.1997L15.4788 13.2297L18.6888 10.0197C19.3588 9.33969 18.8788 8.17969 17.9188 8.17969Z"></path>
                                 </svg>
                             </div>
                         </button>

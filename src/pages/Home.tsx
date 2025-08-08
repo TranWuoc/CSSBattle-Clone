@@ -1,29 +1,35 @@
 import { useAuth } from '@/Context/authContext';
 
-const srcImgs = [
+export const srcImgs = [
     {
-        day: 'July 28',
+        day: 'Jul 28',
         url: 'https://ik.imagekit.io/cssbattle/user%2Fe6YbeBahWNPT7VpE2rE2p85byxa2%2Ftargets%2Ftarget_yHNqGDG.png?alt=media',
+        color: [],
     },
     {
-        day: 'July 29',
+        day: 'Jul 29',
         url: 'https://ik.imagekit.io/cssbattle/user%2Fe6YbeBahWNPT7VpE2rE2p85byxa2%2Ftargets%2Ftarget_MKpJFbH.png?alt=media',
+        color: [],
     },
     {
-        day: 'July 30',
+        day: 'Jul 30',
         url: 'https://ik.imagekit.io/cssbattle/user%2Fe6YbeBahWNPT7VpE2rE2p85byxa2%2Ftargets%2Ftarget_I2RZfx9.png?alt=media',
+        color: [],
     },
     {
-        day: 'July 31',
+        day: 'Jul 31',
         url: 'https://ik.imagekit.io/cssbattle/user%2Fe6YbeBahWNPT7VpE2rE2p85byxa2%2Ftargets%2Ftarget_n4NrvCY.png?alt=media',
+        color: [],
     },
     {
-        day: 'March 1',
+        day: 'Mar 1',
         url: 'https://ik.imagekit.io/cssbattle/user%2Fe6YbeBahWNPT7VpE2rE2p85byxa2%2Ftargets%2Ftarget_JERLIRB.png?alt=media',
+        color: [],
     },
     {
-        day: 'March 2',
+        day: 'Mar 2',
         url: 'https://ik.imagekit.io/cssbattle/user%2Fe6YbeBahWNPT7VpE2rE2p85byxa2%2Ftargets%2Ftarget_unP6kzR.png?alt=media',
+        color: ['#31938C', '#FFFFFF'],
     },
 ];
 
@@ -157,7 +163,7 @@ function Home() {
                                 <div className="!pl-[40px] pr-0">
                                     <div className="flex flex-col items-center justify-start gap-[16px]">
                                         <div
-                                            className="inline-flex h-[25px] w-[66px] items-center rounded-[4px] bg-[#2d363f] px-[3.2px] py-[8px] text-[0.875rem] font-semibold uppercase text-[#cbd1e1]"
+                                            className="inline-flex h-[25px] w-[66px] items-center justify-center rounded-[4px] bg-[#2d363f] px-[3.2px] py-[8px] text-[0.875rem] font-semibold uppercase text-[#cbd1e1]"
                                             style={{
                                                 whiteSpace: 'nowrap',
                                                 transition: 'background-color 0.2s ease;',

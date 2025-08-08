@@ -5,6 +5,10 @@ import { userLogin } from '@/apis/auth';
 import { useNavigate } from 'react-router-dom';
 import InputField from '@/components/InputField';
 import { useAuth } from '@/Context/authContext';
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from 'jwt-decode';
+import type { CredentialResponse } from '@react-oauth/google';
+import type { User } from '@/type/user';
 const loginSchema = yup.object({
     identifier: yup
         .string()
@@ -44,6 +48,32 @@ function Login() {
             const apiError = error?.response?.data?.error?.message;
             console.error(apiError);
         }
+    };
+    const handleGoogleLogin = (credentialResponse: CredentialResponse) => {
+        if (!credentialResponse.credential) {
+            console.error('No credential received from Google');
+            return;
+        }
+        try {
+            const decodedToken: any = jwtDecode(credentialResponse.credential);
+            console.log('Google login successful:', decodedToken);
+            const googleUser = {
+                id: decodedToken.sub,
+                email: decodedToken.email,
+                name: decodedToken.name,
+                picture: decodedToken.picture,
+                provider: 'google',
+            };
+            localStorage.setItem('token', credentialResponse.credential);
+            login(credentialResponse.credential, googleUser);
+            navigate('/');
+        } catch (error) {
+            console.error('Failed to process Google login:', error);
+        }
+    };
+
+    const handleGoogleError = () => {
+        console.error('Google Login failed');
     };
 
     return (
@@ -103,6 +133,14 @@ function Login() {
                                         <span>OR</span>
                                         <hr className="!my-0 !ml-4 !mr-40 flex-[1_1_0%]"></hr>
                                     </div>
+                                    <GoogleLogin
+                                        onSuccess={handleGoogleLogin}
+                                        onError={handleGoogleError}
+                                        theme="outline"
+                                        text="signin_with"
+                                        size="medium"
+                                        locale="English"
+                                    />
                                 </form>
                             </FormProvider>
                         </div>

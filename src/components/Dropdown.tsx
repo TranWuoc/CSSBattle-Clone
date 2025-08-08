@@ -41,7 +41,7 @@ function Dropdown({ trigger, children, className = '' }: DropdownProps) {
             </div>
             {isOpen && (
                 <div
-                    className={`animate-fadeIn fixed z-50 min-w-[200px] rounded-md px-5 py-2 font-[ClashGrotesk] font-semibold tracking-[0.02rem] shadow-[0_10px_80px_rgba(0,0,0,0.75)] backdrop-blur-[20px] ${className}`}
+                    className={`animate-fadeIn fixed z-50 min-w-[200px] rounded-2xl px-5 py-2 font-[ClashGrotesk] font-semibold tracking-[0.02rem] shadow-[0_10px_80px_rgba(0,0,0,0.75)] backdrop-blur-[20px] ${className}`}
                     style={{
                         background: 'linear-gradient(94.5deg, rgba(29, 35, 43, .75) 0.19%, rgba(24, 29, 35, .563))',
                         top: `${position.top}px`,

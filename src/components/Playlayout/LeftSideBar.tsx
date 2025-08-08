@@ -1,4 +1,3 @@
-import Logo from '@/assets/battlecsslogo.png';
 import { useAuth } from '@/Context/authContext';
 import DropdownItem from '../DropdownItem';
 import Dropdown from '../Dropdown';
@@ -72,10 +71,7 @@ function LeftSideBar() {
                         </div>
 
                         {/* GET STARTED Section */}
-                        <Dropdown
-                            trigger={getStarted}
-                            className="fixed left-[226px] top-[165px] !w-[300px] !rounded-2xl"
-                        >
+                        <Dropdown trigger={getStarted} className="fixed left-[226px] top-[165px] !w-[300px]">
                             <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                                 <li>
                                     <div className="flex items-center gap-2">

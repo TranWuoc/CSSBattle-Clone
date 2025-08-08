@@ -15,10 +15,31 @@ body {
     background-color: black;
     color: #000;
     -webkit-font-smoothing: antialiased;
-    /* font-family: 'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', 'Lucida Console', monospace; */
     font-size: 16px;
     margin-left: 15px;
 }
+/* Toàn bộ scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+    /* padding: 2px; */
+}
+
+/* Track (nền của scrollbar) */
+::-webkit-scrollbar-track {
+    background: #373535;
+}
+
+/* Handle (thanh scroll) */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 50px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -419,4 +440,38 @@ a.active svg {
     border: 3px solid #111217;
     border-radius: calc(16px * 0.5);
     aspect-ratio: 4/3;
+}
+.target-tile--daily:not(.target-today .target-tile--daily):not(.target-primary .target-tile--daily) {
+    width: 240px;
+    background: transparent;
+    box-shadow: none;
+    border: 2px solid #27313a;
+}
+
+.target-tile:not(.target-tile--dummy):focus-within,
+.target-tile:not(.target-tile--dummy):hover {
+    transform: scale(1.05);
+    transition:
+        opacity 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease,
+        z-index 0s ease 0s;
+    z-index: 2;
+    opacity: 1;
+}
+
+.colors-list__color::after {
+    content: '';
+    position: absolute;
+    background: var(--color);
+    border-radius: 9999px;
+    height: 1.2rem;
+    width: 1.2rem;
+    left: 0.6rem;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow:
+        0 0 0 1px hsla(0, 0%, 100%, 0.25),
+        0 0 0 2px rgba(0, 0, 0, 0.8);
+    transition: 0.25s ease;
 }
