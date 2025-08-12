@@ -1,4 +1,6 @@
 import { useAuth } from '@/Context/authContext';
+import { useGetTaskList } from '@/hooks/getTaskList';
+import type { Task } from '@/types/task';
 
 export const srcImgs = [
     {
@@ -35,7 +37,7 @@ export const srcImgs = [
 
 function Home() {
     const { isAuthenticated } = useAuth();
-
+    const { data: taskList } = useGetTaskList();
     return (
         <div className="flex w-full flex-col items-stretch gap-[48px] p-[48px]">
             {/* GET STARTED */}
@@ -159,18 +161,18 @@ function Home() {
                 <div className="flex h-[429px] min-h-[415px] w-full overflow-x-auto p-[32px]">
                     <div className="flex items-start justify-start gap-[32px]">
                         <div className="flex pl-[110px]">
-                            {srcImgs.map((srcImg) => (
-                                <div className="!pl-[40px] pr-0">
+                            {(taskList ?? []).map((task: Task) => (
+                                <div key={task.id} className="!pl-[40px] pr-0">
                                     <div className="flex flex-col items-center justify-start gap-[16px]">
                                         <div
                                             className="inline-flex h-[25px] w-[66px] items-center justify-center rounded-[4px] bg-[#2d363f] px-[3.2px] py-[8px] text-[0.875rem] font-semibold uppercase text-[#cbd1e1]"
                                             style={{
                                                 whiteSpace: 'nowrap',
-                                                transition: 'background-color 0.2s ease;',
+                                                transition: 'background-color 0.2s ease',
                                                 boxShadow: 'inset 1px 1px 2px hsla(0,0%,100%,.1)',
                                             }}
                                         >
-                                            {srcImg.day}
+                                            {task.createAt}
                                         </div>
                                         <div className="target-tile--daily target-tile h-[246px] w-[236px]">
                                             <a
@@ -179,7 +181,7 @@ function Home() {
                                                 href="/play/0HOdqfUIHZGpnRVQOQbx"
                                             ></a>
                                             <img
-                                                src={srcImg.url}
+                                                src={task.imageUrl}
                                                 alt=""
                                                 loading="eager"
                                                 className="target-tile__image"

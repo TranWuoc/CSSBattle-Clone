@@ -5,6 +5,7 @@ import StreaksWidget from './StreaksWidget';
 import { useNavigate } from 'react-router-dom';
 function Header() {
     const { isAuthenticated, user, logout, isLoading } = useAuth();
+    console.log(user?.displayName);
     const navigate = useNavigate();
     const handleLogout = () => {
         const confirmLogout = window.confirm('Are u sure you want to logout?');
@@ -28,7 +29,7 @@ function Header() {
                 className="h-[28px] w-[28px] rounded-[50%]"
                 alt="User profile"
             ></img>
-            <p className="!font-['Clash Grotesk'] !font-bold">{user?.name || 'User'}</p>
+            <p className="!font-['Clash Grotesk'] !font-bold">{user?.displayName || 'User'}</p>
             <svg
                 width="18"
                 height="18"
@@ -126,9 +127,7 @@ function Header() {
                                         >
                                             <path
                                                 fill="currentColor"
-                                                fillRule="evenodd"
                                                 d="M6 2.4a1.2 1.2 0 0 1 1.2 1.2v1.2h1.2a1.2 1.2 0 0 1 0 2.4H7.2v1.2a1.2 1.2 0 0 1-2.4 0V7.2H3.6a1.2 1.2 0 0 1 0-2.4h1.2V3.6A1.2 1.2 0 0 1 6 2.4Zm0 12a1.2 1.2 0 0 1 1.2 1.2v1.2h1.2a1.2 1.2 0 1 1 0 2.4H7.2v1.2a1.2 1.2 0 1 1-2.4 0v-1.2H3.6a1.2 1.2 0 1 1 0-2.4h1.2v-1.2A1.2 1.2 0 0 1 6 14.4Zm8.4-12a1.2 1.2 0 0 1 1.16.893l1.415 5.347L21 10.96a1.2 1.2 0 0 1 0 2.08l-4.025 2.321-1.416 5.346a1.2 1.2 0 0 1-2.32 0l-1.414-5.347L7.8 13.04a1.2 1.2 0 0 1 0-2.08l4.025-2.321 1.416-5.346A1.2 1.2 0 0 1 14.4 2.4Z"
-                                                clip-rule="evenodd"
                                             ></path>
                                         </svg>
                                         <DropdownItem href="/" className="!text-[#ffdf00] hover:!underline">
@@ -233,9 +232,7 @@ function Header() {
                                         >
                                             <path
                                                 fill="currentColor"
-                                                fillRule="evenodd"
                                                 d="M3.6 3.6a1.2 1.2 0 0 0-1.2 1.2v14.4a1.2 1.2 0 1 0 2.4 0V4.8a1.2 1.2 0 0 0-1.2-1.2ZM15.95 14.752a1.2 1.2 0 0 0 1.697 1.696l3.6-3.6a1.2 1.2 0 0 0 0-1.696l-3.6-3.6a1.2 1.2 0 1 0-1.697 1.697l1.552 1.551H8.4a1.2 1.2 0 1 0 0 2.4h9.103l-1.552 1.552Z"
-                                                clip-rule="evenodd"
                                             ></path>
                                         </svg>
                                         <DropdownItem

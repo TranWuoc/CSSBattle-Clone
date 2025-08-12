@@ -1,7 +1,7 @@
 export type User = {
     id: number;
+    displayName: string;
     email: string;
-    name: string;
-    picture: string;
+    avatar: string | null;
     provider: string;
 };

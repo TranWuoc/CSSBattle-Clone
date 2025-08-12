@@ -1,10 +1,11 @@
-import type { User } from '@/type/user';
+import type { User } from '@/types/user';
+import { jwtDecode } from 'jwt-decode';
 import { createContext, useContext, useState, useEffect } from 'react';
 
 interface AuthContextType {
     isAuthenticated: boolean;
     user: User | null;
-    login: (token: string, userData: User) => void;
+    login: (userData: User) => void;
     logout: () => void;
     isLoading: boolean;
 }
@@ -17,15 +18,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
+        const accessToken = localStorage.getItem('accessToken');
         const userData = localStorage.getItem('userData');
+        console.log(userData);
+        console.log(accessToken);
 
-        if (token && userData) {
-            // Check cả token và userData
+        if (accessToken && userData) {
             try {
                 const parsedUser = JSON.parse(userData);
-                setUser(parsedUser); // Set user data
-                setIsAuthenticated(true);
+                setUser(parsedUser);
+                console.log(parsedUser);
             } catch (error) {
                 console.error('Error parsing user data:', error);
                 localStorage.removeItem('token');
@@ -33,21 +35,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             }
         }
         setIsLoading(false);
-    }, []);
+    }, [isAuthenticated]);
 
-    const login = (token: string, userData: User) => {
-        localStorage.setItem('token', token);
-        localStorage.setItem('userId', userData.id.toString());
-        localStorage.setItem('userData', JSON.stringify(userData));
-        setIsAuthenticated(true);
+    const login = (userData: User) => {
         setUser(userData);
+        setIsAuthenticated(true);
     };
 
     const logout = () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('userId');
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
         localStorage.removeItem('userData');
-
         setIsAuthenticated(false);
         setUser(null);
     };

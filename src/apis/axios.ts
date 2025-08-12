@@ -4,10 +4,10 @@ class Http {
     instance: AxiosInstance;
     constructor() {
         this.instance = axios.create({
-            baseURL: 'http://localhost:1337/api',
+            baseURL: 'http://localhost:8080',
             timeout: 10000,
             headers: {
-                'Content-Type ': 'application/json',
+                'Content-Type': 'application/json',
             },
         });
     }
@@ -17,9 +17,10 @@ const http = new Http().instance;
 
 http.interceptors.request.use(
     (config) => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            config.headers['Authorization'] = `Bearer ${token}`;
+        const accessToken = localStorage.getItem('accessToken');
+        console.log(accessToken);
+        if (accessToken) {
+            config.headers['Authorization'] = `Bearer ${accessToken}`;
         }
         return config;
     },
@@ -35,5 +36,8 @@ http.interceptors.response.use(
     },
     (error) => {
         console.error('Response error', error);
+        return Promise.reject(error);
     },
 );
+
+export default http;

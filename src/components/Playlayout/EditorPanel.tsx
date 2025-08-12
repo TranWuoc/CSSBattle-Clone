@@ -38,7 +38,7 @@ function EditorPanel({ HTMLcode, CSScode, onHTMLCodeChange, onCSSCodeChange }: E
         </button>
     );
     return (
-        <div className="flex flex-col border-r border-[#27313a]">
+        <div className="flex h-full flex-col border-r border-[#27313a]">
             {/* Header */}
             <div className="flex h-[33.3px] items-center border-t border-[#323f4a] bg-[#2a313a] px-[20px] py-[6.4px]">
                 <div className="flex justify-start gap-[8px]">
