@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
 import InputField from '@/components/InputField';
-import { useAuth } from '@/Context/authContext';
+import { useAuth } from '@/Context/AuthContext';
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import type { CredentialResponse } from '@react-oauth/google';

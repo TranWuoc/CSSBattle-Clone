@@ -1,8 +1,11 @@
+import { useTaskContext } from '@/Context/TaskContext';
 import { srcImgs } from '@/pages/Home';
 import { useState } from 'react';
-import { Slide, ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
-function TargetPanel({ color }: { color: string }) {
+function TargetPanel() {
+    const { selectedTask } = useTaskContext();
+    console.log(selectedTask);
     const [copiedColor, setCopiedColor] = useState<string | null>(null);
     const handleCopyColor = (color: string) => {
         navigator.clipboard.writeText(color).then(() => {
@@ -26,7 +29,7 @@ function TargetPanel({ color }: { color: string }) {
                 </div>
             </div>
             <div className="p-[20px]">
-                <img src={srcImgs[5].url} alt="" loading="eager" className="" />
+                <img src={`http://localhost:8080/${selectedTask?.image}`} alt="" loading="eager" className="" />
 
                 <div className="flex flex-col items-stretch justify-start gap-[16px]">
                     <div className="z-1 relative !mt-[32px]">

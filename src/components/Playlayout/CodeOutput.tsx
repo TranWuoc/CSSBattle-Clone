@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import StatsToggle from './StatsToggle';
 import { srcImgs } from '@/pages/Home';
+import { useTaskContext } from '@/Context/TaskContext';
 interface CodeOutputProps {
     HTMLcode: string;
     CSScode: string;
@@ -11,6 +12,7 @@ function CodeOutput({ HTMLcode, CSScode }: CodeOutputProps) {
     const [isDiff, setIsDiff] = useState(false);
     const [sliderPosition, setSliderPosition] = useState(100);
     const [isHovering, setIsHovering] = useState(false);
+    const { selectedTask } = useTaskContext();
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         if (!isSlideCompare) return;
@@ -81,7 +83,11 @@ function CodeOutput({ HTMLcode, CSScode }: CodeOutputProps) {
                     </div>
                     {/* Target image */}
 
-                    <img src={srcImgs[5].url} alt="Target" className={`absolute left-0 top-0 h-full w-full`} />
+                    <img
+                        src={`http://localhost:8080/${selectedTask?.image}`}
+                        alt="Target"
+                        className={`absolute left-0 top-0 h-full w-full`}
+                    />
 
                     {/* slider line */}
                     {isSlideCompare && isHovering && (

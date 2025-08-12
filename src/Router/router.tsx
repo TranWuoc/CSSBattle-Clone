@@ -6,11 +6,12 @@ import MainLayout from '@/layout/MainLayout';
 import PlayLayout from '@/layout/PlayLayou';
 import Home from '@/pages/Home';
 import Login from '@/pages/Login';
-import { AuthProvider } from '@/Context/authContext';
+import { AuthProvider } from '@/Context/AuthContext';
 import Play from '@/pages/Play';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import ConfirmSignIn from '@/pages/ConfirmEmail';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { TaskProvider } from '@/Context/TaskContext';
 
 const queryClient = new QueryClient();
 
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
         ],
     },
     {
-        path: '/play',
+        path: '/play/:id',
         element: <PlayLayout />,
         children: [{ index: true, element: <Play /> }],
     },
@@ -38,12 +39,14 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <QueryClientProvider client={queryClient}>
-            <AuthProvider>
-                <GoogleOAuthProvider clientId={CLIENT_ID}>
-                    <RouterProvider router={router} />
-                </GoogleOAuthProvider>
-            </AuthProvider>
-        </QueryClientProvider>
+        <AuthProvider>
+            <TaskProvider>
+                <QueryClientProvider client={queryClient}>
+                    <GoogleOAuthProvider clientId={CLIENT_ID}>
+                        <RouterProvider router={router} />
+                    </GoogleOAuthProvider>
+                </QueryClientProvider>
+            </TaskProvider>
+        </AuthProvider>
     </StrictMode>,
 );

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { confirmSignIn, getCurrentUser } from '@/apis/auth';
-import { useAuth } from '@/Context/authContext';
+import { useAuth } from '@/Context/AuthContext';
 
 function ConfirmSignIn() {
     const navigate = useNavigate();

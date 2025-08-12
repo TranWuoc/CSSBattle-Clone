@@ -18,7 +18,6 @@ const http = new Http().instance;
 http.interceptors.request.use(
     (config) => {
         const accessToken = localStorage.getItem('accessToken');
-        console.log(accessToken);
         if (accessToken) {
             config.headers['Authorization'] = `Bearer ${accessToken}`;
         }

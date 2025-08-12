@@ -5,7 +5,6 @@ import StreaksWidget from './StreaksWidget';
 import { useNavigate } from 'react-router-dom';
 function Header() {
     const { isAuthenticated, user, logout, isLoading } = useAuth();
-    console.log(user?.displayName);
     const navigate = useNavigate();
     const handleLogout = () => {
         const confirmLogout = window.confirm('Are u sure you want to logout?');

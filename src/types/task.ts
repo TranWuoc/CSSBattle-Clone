@@ -1,6 +1,6 @@
 export type Task = {
     colorArray: Array<string>;
-    imageUrl: string;
+    image: string;
     id: string;
-    createAt: string;
+    createdAt: string;
 };

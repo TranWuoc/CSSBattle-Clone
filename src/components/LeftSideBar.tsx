@@ -1,5 +1,5 @@
 import Logo from '@/assets/battlecsslogo.png';
-import { useAuth } from '@/Context/authContext';
+import { useAuth } from '@/Context/AuthContext';
 import DropdownItem from './DropdownItem';
 import Dropdown from './Dropdown';
 

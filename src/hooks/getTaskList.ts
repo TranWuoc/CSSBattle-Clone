@@ -5,10 +5,8 @@ const taskApiKeys = {
     getList: 'tasks',
 };
 
-export const useGetTaskList = () => [
+export const useGetTaskList = () =>
     useQuery({
         queryKey: [taskApiKeys.getList],
         queryFn: getTasks,
-        select: (res) => res.data,
-    }),
-];
+    });

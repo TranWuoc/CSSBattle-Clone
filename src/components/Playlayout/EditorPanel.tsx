@@ -3,7 +3,7 @@ import { html } from '@codemirror/lang-html';
 import { css } from '@codemirror/lang-css';
 import { EditorView } from '@codemirror/view';
 import { duotoneDark } from '@uiw/codemirror-themes-all';
-import { useAuth } from '@/Context/authContext';
+import { useAuth } from '@/Context/AuthContext';
 import Dropdown from '../Dropdown';
 import DropdownItem from '../DropdownItem';
 

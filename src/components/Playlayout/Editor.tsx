@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import EditorPanel from './EditorPanel';
 import CodeOutput from './CodeOutput';
 import TargetPanel from './TargetPanel';
+import { useTaskContext } from '@/Context/TaskContext';
 
 interface EditorProps {
     value: string;
@@ -18,6 +19,8 @@ function Editor({ onChangeHTML, onChangeCSS }: EditorProps) {
     background: #dd6b4d;
   }
 `);
+
+    const { selectedTask } = useTaskContext();
 
     const handleHTMLChange = (value: string) => {
         setHTMLCode(value);
@@ -37,7 +40,7 @@ function Editor({ onChangeHTML, onChangeCSS }: EditorProps) {
                 onCSSCodeChange={handleCSSChange}
             />
             <CodeOutput HTMLcode={HTMLcode} CSScode={CSScode} />
-            <TargetPanel color="" />
+            <TargetPanel />
         </div>
     );
 }

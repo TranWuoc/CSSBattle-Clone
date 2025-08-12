@@ -20,14 +20,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     useEffect(() => {
         const accessToken = localStorage.getItem('accessToken');
         const userData = localStorage.getItem('userData');
-        console.log(userData);
-        console.log(accessToken);
 
         if (accessToken && userData) {
             try {
                 const parsedUser = JSON.parse(userData);
                 setUser(parsedUser);
-                console.log(parsedUser);
             } catch (error) {
                 console.error('Error parsing user data:', error);
                 localStorage.removeItem('token');
