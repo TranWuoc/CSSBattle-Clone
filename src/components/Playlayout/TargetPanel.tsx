@@ -1,11 +1,9 @@
 import { useTaskContext } from '@/Context/TaskContext';
-import { srcImgs } from '@/pages/Home';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
 function TargetPanel() {
     const { selectedTask } = useTaskContext();
-    console.log(selectedTask);
     const [copiedColor, setCopiedColor] = useState<string | null>(null);
     const handleCopyColor = (color: string) => {
         navigator.clipboard.writeText(color).then(() => {
@@ -50,14 +48,14 @@ function TargetPanel() {
                             </div>
                         </div>
                     </div>
-                    <ul className="flex flex-wrap gap-[6.4px]">
-                        {srcImgs[5].color.map((color) => (
-                            <li className="transform-none opacity-100">
+                    <ul className="flex flex-wrap gap-[10px]">
+                        {selectedTask?.colorArray.map((color, index) => (
+                            <li key={index} className="transform-none opacity-100">
                                 <button
                                     type="button"
                                     onClick={() => handleCopyColor(color)}
                                     aria-label="Copy color #31938C"
-                                    className="colors-list__color relative flex w-[120px] flex-none basis-[calc(33.33%-10px)] cursor-pointer items-center justify-end rounded-full border-0 bg-[rgb(45,55,64)] px-3 py-1 text-right font-['IBM_Plex_Mono'] font-normal uppercase text-[#a0b3c6] transition ease-in-out"
+                                    className="colors-list__color relative flex w-[120px] flex-none basis-[calc(33.33%-10px)] cursor-pointer items-center justify-end rounded-full border-0 bg-[rgb(45,55,64)] px-3 py-1 text-right font-['IBM_Plex_Mono'] font-normal uppercase text-[#a0b3c6] transition ease-in-out hover:scale-105"
                                     style={{ '--color': `${color}` } as React.CSSProperties}
                                 >
                                     {color}

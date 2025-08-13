@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import StatsToggle from './StatsToggle';
-import { srcImgs } from '@/pages/Home';
 import { useTaskContext } from '@/Context/TaskContext';
+
 interface CodeOutputProps {
     HTMLcode: string;
     CSScode: string;
@@ -63,7 +63,7 @@ function CodeOutput({ HTMLcode, CSScode }: CodeOutputProps) {
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
                 >
-                    {/* Your code output */}
+                    {/* Code output */}
                     <div
                         className={`z-1 relative overflow-hidden bg-white ${isSlideCompare && isHovering ? 'opacity-1' : 'opacity-90'}`}
                         style={{

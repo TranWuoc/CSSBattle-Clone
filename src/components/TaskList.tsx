@@ -1,17 +1,18 @@
+import { useSolutionContext } from '@/Context/SolutionResultContext';
 import { useTaskContext } from '@/Context/TaskContext';
-import { useGetTaskList } from '@/hooks/getTaskList';
+import { useGetTaskList } from '@/hooks/useTaskList';
 import type { Task } from '@/types/task';
 import { formatDate } from '@/utils/formatDate';
 import { useNavigate } from 'react-router-dom';
 
 function TaskList() {
     const { data: taskList } = useGetTaskList();
-    const { setSelectedTask, selectedTask } = useTaskContext();
+    const { setSelectedTask } = useTaskContext();
+    const { getSolutionByTaskId } = useSolutionContext();
     const navigate = useNavigate();
     const handlePlayTask = (task: Task) => {
         setSelectedTask(task);
-        navigate(`play/${task.id}`);
-        console.log(selectedTask);
+        navigate(`play/${task.id}`, { state: { task } });
     };
     return (
         <div className="flex items-start justify-start gap-[32px]">
@@ -45,10 +46,12 @@ function TaskList() {
                                         <div className="font-[16px]">
                                             <div className="flex flex-col items-start justify-start gap-0">
                                                 <p className="font-['Clash Frotesk'] font-semibold text-[#6b7b8e]">
-                                                    Your score
+                                                    Your Score
                                                 </p>
                                                 <p className="font-['IBM_Plex_Mono'] font-semibold text-[#a0b3c6]">
-                                                    Not played
+                                                    {getSolutionByTaskId(task.id)?.scores !== undefined
+                                                        ? `${getSolutionByTaskId(task.id)!.scores.toFixed(2)} {${getSolutionByTaskId(task.id)?.charactersCount ?? 0}}`
+                                                        : 'Not played'}
                                                 </p>
                                             </div>
                                         </div>

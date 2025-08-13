@@ -1,4 +1,19 @@
+import { useSolutionContext } from '@/Context/SolutionResultContext';
+import { useParams } from 'react-router-dom';
 function PersonalStats() {
+    const { id } = useParams<{ id: string }>();
+    const { solutionHistory, getSolutionByTaskId } = useSolutionContext();
+    const currentTaskSolution = id ? getSolutionByTaskId(id) : null;
+
+    // ✅ Calculate stats from solution history
+    const getHighScore = (id: string) => {
+        if (solutionHistory[id]) {
+            const scores = parseFloat(solutionHistory[id].scores.toFixed(2));
+            if (currentTaskSolution?.scores !== undefined && currentTaskSolution.scores < scores) {
+                return scores;
+            } else return currentTaskSolution?.scores;
+        } else return '-';
+    };
     return (
         <div className="!mt-[16px] flex flex-wrap items-center justify-start gap-[8px]">
             <div className="relative mt-[8px] grow rounded-[16px] border-2 border-[#27313a] p-[12px]">
@@ -16,10 +31,17 @@ function PersonalStats() {
                     </div>
                     <div className="flex items-center justify-start gap-[8px]">
                         <span
-                            className="font-['Clash Grotesk'] scale-150 text-left !text-[1.125rem] !font-bold text-[#eff5fb]"
+                            className="font-['Clash Grotesk'] text-left !text-[1.125rem] !font-bold text-[#eff5fb]"
                             style={{ letterSpacing: '0.3px', lineHeight: '1.4' }}
                         >
-                            -
+                            {currentTaskSolution ? (
+                                <div className="flex gap-2">
+                                    <span>{parseFloat(currentTaskSolution.scores.toFixed(2))}</span>
+                                    <span className="text-[#a0b3c6]">({currentTaskSolution.percentMatch}%)</span>
+                                </div>
+                            ) : (
+                                '-'
+                            )}
                         </span>
                     </div>
                     <span className="font-['Clash Grotesk'] !text-[0.875rem] font-semibold text-[#6b7b8e]">
@@ -42,10 +64,17 @@ function PersonalStats() {
                     </div>
                     <div className="flex items-center justify-start gap-[8px]">
                         <span
-                            className="font-['Clash Grotesk'] scale-150 text-left !text-[1.125rem] !font-bold text-[#eff5fb]"
+                            className="font-['Clash Grotesk'] text-left !text-[1.125rem] !font-bold text-[#eff5fb]"
                             style={{ letterSpacing: '0.3px', lineHeight: '1.4' }}
                         >
-                            -
+                            <div className="flex gap-2">
+                                <span>{getHighScore(id ?? '')}</span>
+                                <span className="text-[#a0b3c6]">
+                                    {currentTaskSolution?.charactersCount
+                                        ? `{${currentTaskSolution.charactersCount}}`
+                                        : ''}
+                                </span>
+                            </div>
                         </span>
                     </div>
                     <span className="font-['Clash Grotesk'] !text-[0.875rem] font-semibold text-[#6b7b8e]">

@@ -1,5 +1,5 @@
+import usePersistedState from '@/hooks/usePersistedState';
 import type { User } from '@/types/user';
-import { jwtDecode } from 'jwt-decode';
 import { createContext, useContext, useState, useEffect } from 'react';
 
 interface AuthContextType {
@@ -14,7 +14,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [user, setUser] = useState<User | null>(null);
+    const [user, setUser] = usePersistedState<User | null>('userData', null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -25,6 +25,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             try {
                 const parsedUser = JSON.parse(userData);
                 setUser(parsedUser);
+                setIsAuthenticated(true);
             } catch (error) {
                 console.error('Error parsing user data:', error);
                 localStorage.removeItem('token');
@@ -32,7 +33,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             }
         }
         setIsLoading(false);
-    }, [isAuthenticated]);
+    }, []);
 
     const login = (userData: User) => {
         setUser(userData);

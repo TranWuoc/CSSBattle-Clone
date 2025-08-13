@@ -12,9 +12,18 @@ interface EditorPanelProps {
     CSScode: string;
     onHTMLCodeChange: (value: string) => void;
     onCSSCodeChange: (value: string) => void;
+    onSubmit: (value: string, charactersCount: number) => void;
+    isLoading?: boolean;
 }
 
-function EditorPanel({ HTMLcode, CSScode, onHTMLCodeChange, onCSSCodeChange }: EditorPanelProps) {
+function EditorPanel({
+    HTMLcode,
+    CSScode,
+    onHTMLCodeChange,
+    onCSSCodeChange,
+    onSubmit,
+    isLoading = false,
+}: EditorPanelProps) {
     const { isAuthenticated } = useAuth();
 
     const settingEdit = (
@@ -211,25 +220,89 @@ function EditorPanel({ HTMLcode, CSScode, onHTMLCodeChange, onCSSCodeChange }: E
                         </svg>
                         <span>Top Solutions</span>
                     </button>
-                    <button className="!font-['Clash Grotesk'] !ml-[20px] !inline-flex cursor-pointer items-center justify-center rounded-[50px] border-0 bg-[#0060ca] !py-[11.2px] !text-left font-bold leading-[1.2] tracking-[0.2px] !text-[#fff] no-underline shadow-[inset_1px_1px_2px_hsla(0,0%,100%,0.1)] transition-[transform,background-color] duration-200 ease-in-out hover:bg-[#0050b0]">
-                        {isAuthenticated ? (
-                            <></>
+                    <button
+                        disabled={isLoading}
+                        onClick={() => onSubmit('HTMLcode' + 'CSScode', CSScode.length + HTMLcode.length)}
+                        className={`!font-['Clash Grotesk'] !ml-[20px] !inline-flex cursor-pointer items-center justify-center rounded-[50px] border-0 bg-[#0060ca] !py-[11.2px] !text-left font-bold leading-[1.2] tracking-[0.2px] !text-[#fff] no-underline shadow-[inset_1px_1px_2px_hsla(0,0%,100%,0.1)] transition-[transform,background-color] duration-200 ease-in-out hover:bg-[#0050b0] ${isLoading ? 'pointer-events-none opacity-70' : ''}`}
+                    >
+                        {isLoading ? (
+                            <div className="flex gap-2">
+                                <span>Submit</span>
+                                <div className="flex justify-start gap-[8px]">
+                                    <div className="flex items-center gap-[4px]">
+                                        {['⌘', 'ENTER'].map((text) => (
+                                            <div
+                                                key={text}
+                                                className="inline-flex h-[14.63px] items-center rounded-[4px] bg-[hsla(0,0%,100%,.05)] px-[4.8px] !pt-[0.64px] font-['IBM_Plex_Mono'] font-semibold uppercase text-[hsla(0,0%,100%,.4)] shadow-[0_2px_0_0_hsla(0,0%,100%,.1)]"
+                                                style={{
+                                                    lineHeight: '14px',
+                                                    whiteSpace: 'nowrap',
+                                                    transition: '.2s ease',
+                                                }}
+                                            >
+                                                {text}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                                <svg
+                                    className="-ml-1 mr-2 h-4 w-4 animate-spin text-white"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <circle
+                                        className="opacity-25"
+                                        cx="12"
+                                        cy="12"
+                                        r="10"
+                                        stroke="currentColor"
+                                        strokeWidth="4"
+                                    ></circle>
+                                    <path
+                                        className="opacity-75"
+                                        fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                    ></path>
+                                </svg>
+                            </div>
                         ) : (
-                            <svg
-                                width="20"
-                                height="20"
-                                viewBox="0 0 24 24"
-                                fill="undefined"
-                                xmlns="http://www.w3.org/2000/svg"
-                                style={{ verticalAlign: 'middle', marginRight: '0px', marginLeft: '0px' }}
-                            >
-                                <path
-                                    d="M12 17a2 2 0 0 0 2-2 2 2 0 0 0-2-2 2 2 0 0 0-2 2 2 2 0 0 0 2 2m6-9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2h1V6a5 5 0 0 1 5-5 5 5 0 0 1 5 5v2h1m-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3Z"
-                                    fill="currentColor"
-                                ></path>
-                            </svg>
+                            <div className="flex gap-2">
+                                {!isAuthenticated && (
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        fill="undefined"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        style={{ verticalAlign: 'middle', marginRight: '8px', marginLeft: '0px' }}
+                                    >
+                                        <path
+                                            d="M12 17a2 2 0 0 0 2-2 2 2 0 0 0-2-2 2 2 0 0 0-2 2 2 2 0 0 0 2 2m6-9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2h1V6a5 5 0 0 1 5-5 5 5 0 0 1 5 5v2h1m-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3Z"
+                                            fill="currentColor"
+                                        ></path>
+                                    </svg>
+                                )}
+                                <span>Submit</span>
+                                <div className="flex justify-start gap-[8px]">
+                                    <div className="flex items-center gap-[4px]">
+                                        {['⌘', 'ENTER'].map((text) => (
+                                            <div
+                                                key={text}
+                                                className="inline-flex h-[14.63px] items-center rounded-[4px] bg-[hsla(0,0%,100%,.05)] px-[4.8px] !pt-[0.64px] font-['IBM_Plex_Mono'] font-semibold uppercase text-[hsla(0,0%,100%,.4)] shadow-[0_2px_0_0_hsla(0,0%,100%,.1)]"
+                                                style={{
+                                                    lineHeight: '14px',
+                                                    whiteSpace: 'nowrap',
+                                                    transition: '.2s ease',
+                                                }}
+                                            >
+                                                {text}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
                         )}
-                        <span>Submit</span>
                     </button>
                 </div>
             </div>

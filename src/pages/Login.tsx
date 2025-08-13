@@ -191,7 +191,7 @@ function Login() {
                                     onSubmit={loginForm.handleSubmit(handleEmailSignIn)}
                                     className="!mt-[30px] flex h-[50px] w-full flex-col gap-[20px] px-[40px]"
                                 >
-                                    <div className="flex flex-1 flex-col">
+                                    <div className="flex flex-col">
                                         <div className="!mb-[16px] flex flex-row">
                                             <InputField
                                                 placeholder="example@domain.com"
@@ -215,14 +215,11 @@ function Login() {
                                         <span>OR</span>
                                         <hr className="!my-0 !ml-4 !mr-40 flex-[1_1_0%]"></hr>
                                     </div>
-                                    <GoogleLogin
-                                        onSuccess={handleGoogleLogin}
-                                        onError={handleGoogleError}
-                                        theme="outline"
-                                        text="signin_with"
-                                        size="medium"
-                                        locale="English"
-                                    />
+                                    <div className="flex">
+                                        <div className="h-[40px] w-[240px] overflow-hidden">
+                                            <GoogleLogin onSuccess={handleGoogleLogin} onError={handleGoogleError} />
+                                        </div>
+                                    </div>
                                 </form>
                             </FormProvider>
                         </div>

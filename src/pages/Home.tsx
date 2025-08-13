@@ -1,37 +1,5 @@
 import TaskList from '@/components/TaskList';
 import { useAuth } from '@/Context/AuthContext';
-export const srcImgs = [
-    {
-        day: 'Jul 28',
-        url: 'https://ik.imagekit.io/cssbattle/user%2Fe6YbeBahWNPT7VpE2rE2p85byxa2%2Ftargets%2Ftarget_yHNqGDG.png?alt=media',
-        color: [],
-    },
-    {
-        day: 'Jul 29',
-        url: 'https://ik.imagekit.io/cssbattle/user%2Fe6YbeBahWNPT7VpE2rE2p85byxa2%2Ftargets%2Ftarget_MKpJFbH.png?alt=media',
-        color: [],
-    },
-    {
-        day: 'Jul 30',
-        url: 'https://ik.imagekit.io/cssbattle/user%2Fe6YbeBahWNPT7VpE2rE2p85byxa2%2Ftargets%2Ftarget_I2RZfx9.png?alt=media',
-        color: [],
-    },
-    {
-        day: 'Jul 31',
-        url: 'https://ik.imagekit.io/cssbattle/user%2Fe6YbeBahWNPT7VpE2rE2p85byxa2%2Ftargets%2Ftarget_n4NrvCY.png?alt=media',
-        color: [],
-    },
-    {
-        day: 'Mar 1',
-        url: 'https://ik.imagekit.io/cssbattle/user%2Fe6YbeBahWNPT7VpE2rE2p85byxa2%2Ftargets%2Ftarget_JERLIRB.png?alt=media',
-        color: [],
-    },
-    {
-        day: 'Mar 2',
-        url: 'https://ik.imagekit.io/cssbattle/user%2Fe6YbeBahWNPT7VpE2rE2p85byxa2%2Ftargets%2Ftarget_unP6kzR.png?alt=media',
-        color: ['#31938C', '#FFFFFF'],
-    },
-];
 
 function Home() {
     const { isAuthenticated } = useAuth();
@@ -155,10 +123,14 @@ function Home() {
                     </a>
                 </div>
             </div>
-            <div className="bg-panel-login shadow-glow rounded-[16px]">
+            <div className="bg-panel-login shadow-glow relative overflow-hidden rounded-[16px]">
                 <div className="flex h-[429px] min-h-[415px] w-full overflow-x-auto p-[32px]">
                     <TaskList />
                 </div>
+                <div
+                    className="pointer-events-none absolute inset-0"
+                    style={{ background: 'linear-gradient(to right, #13161b, transparent 15%)' }}
+                ></div>
             </div>
             {/* PUBLIC VERSUS ROOMS */}
             <div className="flex w-full flex-col justify-between gap-[16px]">
