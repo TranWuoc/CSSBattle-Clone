@@ -217,7 +217,13 @@ function Login() {
                                     </div>
                                     <div className="flex">
                                         <div className="h-[40px] w-[240px] overflow-hidden">
-                                            <GoogleLogin onSuccess={handleGoogleLogin} onError={handleGoogleError} />
+                                            <GoogleLogin
+                                                onSuccess={handleGoogleLogin}
+                                                onError={handleGoogleError}
+                                                theme="outline"
+                                                text="signin_with"
+                                                size="medium"
+                                            />
                                         </div>
                                     </div>
                                 </form>

@@ -3,6 +3,7 @@ import DropdownItem from '../DropdownItem';
 import Dropdown from '../Dropdown';
 import { useNavigate } from 'react-router-dom';
 import Logo from '@/assets/battlecsslogo.png';
+import { formatDate } from '@/utils/formatDate';
 
 interface HeaderProps {
     isOpenSideBar: boolean;
@@ -12,6 +13,7 @@ interface HeaderProps {
 function Header({ onToggleSidebar, isOpenSideBar }: HeaderProps) {
     const { isAuthenticated, user, logout, isLoading } = useAuth();
     const navigate = useNavigate();
+    const date = new Date();
     const handleLogout = () => {
         const confirmLogout = window.confirm('Are u sure you want to logout?');
         if (confirmLogout) {
@@ -103,6 +105,19 @@ function Header({ onToggleSidebar, isOpenSideBar }: HeaderProps) {
                         <img src={Logo} alt="" className="h-[18px] w-[31px]" />
                         <label className="font-ibm text-[20px] font-bold text-yellow-300">CSSBattle</label>
                     </div>
+                    <a className="pointer-events-none flex h-[35px]">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                fill="currentColor"
+                                d="M5.374 20.065c-2.004 0-3.103-1.09-3.103-3.085V6.346c0-1.995 1.1-3.085 3.103-3.085h12.243c2.013 0 3.103 1.09 3.103 3.085V16.98c0 1.996-1.09 3.085-3.103 3.085H5.374Zm.167-2.267h11.91c.65 0 1.001-.317 1.001-1.01V8.973c0-.695-.351-1.011-1.002-1.011H5.541c-.66 0-1.002.316-1.002 1.01v7.814c0 .694.343 1.01 1.002 1.01Zm4.307-6.987c-.326 0-.44-.097-.44-.422V9.87c0-.316.114-.422.44-.422h.518c.317 0 .43.106.43.422v.519c0 .325-.113.421-.43.421h-.518Zm2.795 0c-.326 0-.44-.097-.44-.422V9.87c0-.316.114-.422.44-.422h.518c.316 0 .43.106.43.422v.519c0 .325-.114.421-.43.421h-.518Zm2.794 0c-.325 0-.439-.097-.439-.422V9.87c0-.316.114-.422.44-.422h.51c.325 0 .439.106.439.422v.519c0 .325-.114.421-.44.421h-.51Zm-8.384 2.75c-.325 0-.43-.096-.43-.421v-.519c0-.316.105-.422.43-.422h.518c.325 0 .431.106.431.422v.519c0 .325-.106.421-.43.421h-.52Zm2.795 0c-.326 0-.44-.096-.44-.421v-.519c0-.316.114-.422.44-.422h.518c.317 0 .43.106.43.422v.519c0 .325-.113.421-.43.421h-.518Zm2.795 0c-.326 0-.44-.096-.44-.421v-.519c0-.316.114-.422.44-.422h.518c.316 0 .43.106.43.422v.519c0 .325-.114.421-.43.421h-.518Zm2.794 0c-.325 0-.439-.096-.439-.421v-.519c0-.316.114-.422.44-.422h.51c.325 0 .439.106.439.422v.519c0 .325-.114.421-.44.421h-.51Zm-8.384 2.752c-.325 0-.43-.106-.43-.422v-.519c0-.325.105-.422.43-.422h.518c.325 0 .431.097.431.422v.519c0 .316-.106.421-.43.421h-.52Zm2.795 0c-.326 0-.44-.106-.44-.422v-.519c0-.325.114-.422.44-.422h.518c.317 0 .43.097.43.422v.519c0 .316-.113.421-.43.421h-.518Zm2.795 0c-.326 0-.44-.106-.44-.422v-.519c0-.325.114-.422.44-.422h.518c.316 0 .43.097.43.422v.519c0 .316-.114.421-.43.421h-.518Z"
+                            ></path>
+                        </svg>
+                        <span className="inline-block flex-[1_1_0%] p-2 leading-none">Daily targets</span>
+                    </a>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="#91a7be" viewBox="0 0 24 24">
+                        <path d="M18 12c0 .535-.188.982-.652 1.42l-8.354 8.089c-.331.327-.74.491-1.226.491C6.796 22 6 21.225 6 20.264c0-.491.199-.928.564-1.288l7.281-6.987-7.281-6.976A1.753 1.753 0 0 1 6 3.736C6 2.786 6.796 2 7.768 2c.486 0 .895.164 1.226.491l8.354 8.09c.453.426.652.873.652 1.419Z" />
+                    </svg>
+                    <span className="text-[16px] font-bold text-[white]">{formatDate(date as any)}, 2025</span>
                 </div>
             </div>
             {/* Right Header */}
